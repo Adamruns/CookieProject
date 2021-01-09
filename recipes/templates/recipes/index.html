@@ -9,3 +9,13 @@
     </div>
 {% endblock heading %}
 
+<ul class="list-group t20">
+    {% for Recipe in recipe_info %}
+    <li class="list-group-item">{{ Recipe.title }}</li>
+    {% endfor %}
+</ul>
+from django.contrib import admin
+from .models import Post
+
+admin.site.register(Post)
+

@@ -2,14 +2,17 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from .models import Recipe
 from . import models
 
 
 class IndexView(View):
     def get(self, request):
+        recipe_info = Recipe.objects.order_by('id')
         context = {
-            'title': 'Cookies'
+            'recipe_info': recipe_info,
+            'title': 'Cookies',
+            'recipes': ''
         }
         return render(request, 'recipes/index.html', context)
 
