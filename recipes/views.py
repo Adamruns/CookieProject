@@ -8,9 +8,9 @@ from . import models
 
 class IndexView(View):
     def get(self, request):
-        recipe_info = Recipe.objects.order_by('id')
+        recipes = Recipe.objects.order_by('id')
         context = {
-            'recipe_info': recipe_info,
+            'recipes': recipes,
             'title': 'Cookies',
             'recipes': ''
         }

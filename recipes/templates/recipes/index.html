@@ -8,12 +8,16 @@
         <a class="btn btn-primary btn-lg" id="add-recipe-button" href="{% url 'recipes_recipe_add' %}" role="button">Add Recipe</a>
     </div>
 {% endblock heading %}
-
-<ul class="list-group t20">
-    {% for Recipe in recipe_info %}
+{% block content %}
+<div>
+    <ul class="list-group t20">
+    {% for Recipe in recipes %}
     <li class="list-group-item">{{ Recipe.title }}</li>
+    <li>"Test"</li>
     {% endfor %}
 </ul>
+</div>
+{% endblock content %}
 from django.contrib import admin
 from .models import Post
 
