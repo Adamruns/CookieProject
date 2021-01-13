@@ -31,6 +31,7 @@ class RecipeAddView(View):
         return render(request, 'recipes/recipe_form.html', context)
 
     def post(self, request):
+        print(self.request.POST)
         title = self.request.POST.get('title')
         yield_amount = self.request.POST.get('yield_amount')
         prep_time = self.request.POST.get('prep_time')
