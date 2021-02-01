@@ -7,6 +7,6 @@ class Recipe(models.Model):
     prep_time = models.CharField(max_length=255)
     ingredients = models.TextField()
     directions = models.TextField()
-
+    image = models.CharField(max_length=255, null=True)
     def __str__(self):
         return self.title

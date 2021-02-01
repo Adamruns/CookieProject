@@ -33,9 +33,10 @@ class RecipeAddView(View):
         prep_time = self.request.POST.get('prep_time')
         ingredients = self.request.POST.get('ingredients')
         directions = self.request.POST.get('directions')
+        image = self.request.POST.get('image')
 
         recipe = models.Recipe.objects.create(title=title, yield_amount=yield_amount, prep_time=prep_time,
-         ingredients=ingredients, directions=directions)
+                                              ingredients=ingredients, directions=directions, image=image)
         return HttpResponseRedirect(reverse('recipe_index'))
 
 
@@ -51,6 +52,7 @@ class RecipeEditView(View):
         recipe.prep_time = self.request.POST.get('prep_time')
         recipe.ingredients = self.request.POST.get('ingredients')
         recipe.directions = self.request.POST.get('directions')
+        recipe.image = self.request.POST.get('image')
         recipe.save()
         return HttpResponseRedirect(reverse('recipe_index'))
 
@@ -61,10 +63,11 @@ class RecipeDetailView(View):
         return render(request, 'recipes/recipe_detail.html', context={'recipe': recipe})
 
 
-class RecipeDeleteView(View,):
+class RecipeDeleteView(View, ):
     def get(self, request, pk=None):
         recipe = get_object_or_404(Recipe, pk=pk)
         recipe.delete()
         return HttpResponseRedirect(reverse('recipe_index'))
-#
+
+    #
     pass
