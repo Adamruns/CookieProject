@@ -3,7 +3,7 @@
 {% block heading %}
     <div class="jumbotron">
         <h1 class="display-4"><img src="{% static 'Cookie-monster.jpg' %}" alt="Cookie Monster"> Cookie Monster Cookie Catalog</h1>
-        <p class="lead">Enter your favorite cookie recipes.</p>
+        <p style="margin-left:5em;"class="lead">Enter your favorite cookie recipes.</p>
         <hr class="my-4">
         <a class="btn btn-primary btn-lg" id="add-recipe-button" href="{% url 'recipes_recipe_add' %}" role="button">Add Recipe</a>
     </div>
@@ -12,10 +12,27 @@
 <div>
     <ul class="list-group t20">
     {% for Recipe in recipes %}
-    <li class="list-group-item">{{ Recipe.title }}</li>
+        <li class="list-group-item"> <a class="btn btn-outline-primary waves-effect" href="{% url 'recipes_recipe_detail' Recipe.pk %}">{{ Recipe.title }}</a>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ Recipe.pk }}">
+  Delete Recipe </button>
+            <div class="modal fade" id="deleteModal-{{ Recipe.pk }}" tabindex="-1" aria-labelledby="deleteModal-{{ Recipe.pk }}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete {{ Recipe.title }} ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <a class="btn btn-danger" href="{% url 'recipes_recipe_delete' Recipe.pk %}">Delete Recipe</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--            <a class="btn btn-danger" href="{% url 'recipes_recipe_delete' Recipe.pk %}">Delete Recipe</a></li>-->
     {% endfor %}
 </ul>
-</div>
+
 {% endblock content %}
 from django.contrib import admin
 from .models import Post

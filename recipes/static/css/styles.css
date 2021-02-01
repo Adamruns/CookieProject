@@ -1,0 +1,24 @@
+body {
+    background-image: url("/static/cookie-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+img {
+  height: 200px;
+}
+
+#add-recipe-button {
+    margin-left: 50%;
+}
+
+.lead {
+    font-size: 35px;
+}
+
+.display-4 {
+    background-color: white;
+}
+.btn-danger {
+    margin-left: 100px;
+}

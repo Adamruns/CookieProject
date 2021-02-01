@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -15,9 +15,6 @@ class IndexView(View):
         }
         return render(request, 'recipes/index.html', context)
 
-    # def post(self):
-    #     return HttpResponse("Cool stuff")
-
 
 class RecipeListView(View):
     pass
@@ -31,30 +28,43 @@ class RecipeAddView(View):
         return render(request, 'recipes/recipe_form.html', context)
 
     def post(self, request):
-        print(self.request.POST)
         title = self.request.POST.get('title')
         yield_amount = self.request.POST.get('yield_amount')
         prep_time = self.request.POST.get('prep_time')
         ingredients = self.request.POST.get('ingredients')
         directions = self.request.POST.get('directions')
-        print(title, yield_amount)
 
         recipe = models.Recipe.objects.create(title=title, yield_amount=yield_amount, prep_time=prep_time,
          ingredients=ingredients, directions=directions)
-        # recipe.title = title
-        # recipe.yield_amount = yield_amount
-        # recipe.save()
-        #
         return HttpResponseRedirect(reverse('recipe_index'))
 
 
 class RecipeEditView(View):
-    pass
+    def get(self, request, pk=None):
+        recipe = Recipe.objects.get(pk=pk)
+        return render(request, 'recipes/recipe_edit.html', context={'recipe': recipe})
+
+    def post(self, request, pk):
+        recipe = Recipe.objects.get(pk=pk)
+        recipe.title = self.request.POST.get('title')
+        recipe.yield_amount = self.request.POST.get('yield_amount')
+        recipe.prep_time = self.request.POST.get('prep_time')
+        recipe.ingredients = self.request.POST.get('ingredients')
+        recipe.directions = self.request.POST.get('directions')
+        recipe.save()
+        return HttpResponseRedirect(reverse('recipe_index'))
 
 
 class RecipeDetailView(View):
-    pass
+    def get(self, request, pk=None):
+        recipe = Recipe.objects.get(pk=pk)
+        return render(request, 'recipes/recipe_detail.html', context={'recipe': recipe})
 
 
-class RecipeDeleteView(View):
+class RecipeDeleteView(View,):
+    def get(self, request, pk=None):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        recipe.delete()
+        return HttpResponseRedirect(reverse('recipe_index'))
+#
     pass

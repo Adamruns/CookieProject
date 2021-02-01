@@ -3,8 +3,8 @@
 {% block content %}
 
     <h1>Add a Recipe</h1>
-
-    <form action="" method="POST">{% csrf_token %}
+<!--{% url 'recipes_recipe_add' %} isn't required. It is the default if left empty.-->
+    <form action="{% url 'recipes_recipe_add' %}" method="POST">{% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail3">Title</label>
@@ -23,11 +23,11 @@
   </div>
   <div class="form-group">
     <label for="inputAddress">Ingredients</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="List all Ingredients" name="ingredients">
+    <textarea class="form-control" id="inputAddress" placeholder="List all Ingredients" name="ingredients"></textarea>
   </div>
   <div class="form-group">
-    <label for="inputAddress2">Directions</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="List all Directions" name="directions">
+    <label for="directions">Directions</label>
+     <textarea id="directions" class="form-control" placeholder="List all Directions" name="directions"></textarea>
   </div>
 <div class="form-group row">
             <div class="col-sm-10">
@@ -35,20 +35,6 @@
             </div>
           </div>
     </form>
-
-<!--This is Dan's example code-->
-<!--        <div class="form-group row">-->
-<!--            <label for="inputEmail3" class="col-sm-2 col-form-label">Title</label>-->
-<!--            <div class="col-sm-10">-->
-<!--              <input type="text" class="form-control" placeholder="Recipe Title" name="title">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="form-group row">-->
-<!--            <label for="inputPassword3" class="col-sm-2 col-form-label">Yield</label>-->
-<!--            <div class="col-sm-10">-->
-<!--              <input type="text" class="form-control" placeholder="How much will this make?" name="yield_amount">-->
-<!--            </div>-->
-<!--          </div>-->
 
 
 {% endblock %}
