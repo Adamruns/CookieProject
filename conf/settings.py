@@ -12,8 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from os.path import normpath, join, dirname, abspath, basename
 from pathlib import Path
 from sys import path
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 # ======== PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
@@ -86,12 +87,16 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default='postgres://jmgypffrkmpfzm:d585f7cb6fb9f000d3416a7f9aa335c3ad2f232729526b6fcda69db709efa80a@ec2-54-164-241-193.compute-1.amazonaws.com:5432/ddespke58hr65j')
 }
+
 
 
 # Password validation
