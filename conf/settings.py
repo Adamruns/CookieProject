@@ -36,7 +36,7 @@ SECRET_KEY = '^e!8gbfrned@%(h1s5mu)kc@pn1u2)3&po1=t4usxi5xiwlpvl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cookiemonsterproject.herokuapp.com']
 
 
 # Application definition
