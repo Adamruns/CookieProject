@@ -17,7 +17,7 @@ from sys import path
 BASE_DIR = Path(__file__).resolve().parent.parent
 # ======== PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+DJANGO_ROOT = dirname(abspath(__file__))
 # Absolute filesystem path to the top-level project folder:
 SITE_ROOT = dirname(DJANGO_ROOT)
 # Site name:
@@ -130,7 +130,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
 # ======== STATIC FILE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = normpath(join(SITE_ROOT, 'assets'))
